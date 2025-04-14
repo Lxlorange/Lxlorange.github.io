@@ -1,28 +1,18 @@
 # The Site Configuration
-
-# Import the theme
 theme: jekyll-theme-chirpy
 
-# The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
-# If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
-# otherwise, the layout language will use the default value of 'en'.
 lang: zh-CN
-
-# Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
 timezone: Asia/Shanghai
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
-# ↓ --------------------------
 
-title: 柚子酒吧 # the main title
+title: 柚子的笔记
 
-tagline: 随便写写，随便看看，<br>瞎折腾折腾 # it will display as the subtitle
+tagline: 一个普通软工杂鱼的一本普通学习笔记
 
-description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+description: >-
+  电子笔记，记录软件工程专业课知识，以及学习过程中的思考的博客。
 
-# Fill in the protocol & hostname for your site.
-# E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://xiangluanliang.github.io"
 
 github:
@@ -32,33 +22,26 @@ bilibili:
   username: 凉香栾
 
 social:
-  # Change to your full name.
-  # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: 凉香栾
-  email: orangelxl741216@gmail.com # change to your email address
+  email: orangelxl741216@gmail.com
   links:
-    # The first element serves as the copyright owner's link
-    - https://github.com/xiangluanliang # change to your GitHub homepage
-    - https://space.bilibili.com/456009262
+    - https://github.com/xiangluanliang     # github
+    # - https://space.bilibili.com/456009262  # bilibili
+    - mailto:orangelxl741216@gmail.com      # email
 
-# Site Verification Settings
 webmaster_verifications:
-  google: # fill in your Google verification code
+  google: SrvFhthsIbYE8C1TPE0OHn9oEtN76AD7Bq4_2zG7J_k
   bing: # fill in your Bing verification code
-  alexa: # fill in your Alexa verification code
-  yandex: # fill in your Yandex verification code
   baidu: # fill in your Baidu verification code
-  facebook: # fill in your Facebook verification code
 
-# ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
 
 # Web Analytics Settings
 analytics:
   google:
-    id: # fill in your Google Analytics ID
+    id: G-T2G3ZJ5021
   goatcounter:
-    id: # fill in your GoatCounter ID
+    id: orangelxl
   umami:
     id: # fill in your Umami ID
     domain: # fill in your Umami domain
@@ -72,7 +55,7 @@ analytics:
 
 # Page views settings
 pageviews:
-  provider: # now only supports 'goatcounter'
+  provider: orangelxl
 
 # Prefer color scheme setting.
 #

@@ -3,13 +3,13 @@
 - type: github
   icon: "fab fa-github"
 
-- type: bilibili
-  icon: "fa-brands fa-bilibili"
+# - type: bilibili
+#   icon: "fas fa-tv"
 
 - type: email
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
-- type: rss
-  icon: "fas fa-rss"
-  noblank: true
+# - type: rss
+#   icon: "fas fa-rss"
+#   noblank: true
