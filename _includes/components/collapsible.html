@@ -1,0 +1,23 @@
+{% comment %}
+  接收两个参数:
+  - title: 显示在按钮上的标题文字
+  - content: 要折叠起来的内容
+{% endcomment %}
+
+{% comment %}
+  为了防止一个页面上有多个折叠卡片时ID冲突，我们用标题和文章ID生成一个唯一的ID
+{% endcomment %}
+{%- assign unique_id = include.title | slugify | append: '-' | append: page.id -%}
+
+<div class="mb-3">
+  <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#{{ unique_id }}" aria-expanded="false" aria-controls="{{ unique_id }}">
+    {{ include.title | default: "点击展开/收起" }}
+    <i class="fas fa-chevron-down ms-2 transition-transform"></i>
+  </button>
+</div>
+
+<div class="collapse" id="{{ unique_id }}">
+  <div class="card card-body mb-4">
+    {{ include.content | markdownify }}
+  </div>
+</div>

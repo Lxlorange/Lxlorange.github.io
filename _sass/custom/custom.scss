@@ -1,0 +1,61 @@
+.post-preview {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 12px; /* 可以给卡片加个圆角，更好看 */
+}
+.post-preview:hover {
+  transform: translateY(-5px) scale(1.02); /* 向上移动5px，同时放大2% */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* 添加一点阴影增加立体感 */
+}
+
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+[data-bs-toggle="collapse"][aria-expanded="true"] > .transition-transform {
+  transform: rotate(-180deg);
+}
+html[data-bs-theme="dark"] div.collapse div.card div.card.card-body {
+  background-color: #2d3235 !important;
+  --bs-card-border-color: #424242;
+  color: #e8e6e3;
+}
+
+// @keyframes scroll-background {
+//   from {
+//     background-position: 0 0;
+//   }
+//   to {
+//     background-position: 526px 526px;
+//   }
+// }
+
+// body {
+//   background-image: url('/assets/img/southeast.jpg');
+//   background-size: 526px 526px;
+//   animation: scroll-background 40s linear infinite;
+// }
+
+// [data-bs-theme="light"] #main > .row .card {
+//   background-color: rgba(255, 255, 255, 0.95);
+// }
+// [data-bs-theme="dark"] #main > .row .card {
+//   background-color: rgba(33, 37, 41, 0.9); 
+// }
+
+// [data-bs-theme="dark"] body {
+//   filter: invert(1);
+// }
+// [data-bs-theme="dark"] body * {
+//   filter: invert(1);
+// }
+
+// /*
+//  * 5. 【修正图片】对图片进行特殊处理
+//  * 图片被反转两次后，颜色会恢复正常，但如果图片本身有透明区域，可能会出现问题。
+//  * 如果您发现图片显示不正常，可以取消下面这段代码的注释，它会阻止图片被反转。
+//  */
+// /*
+// [data-bs-theme="dark"] img {
+//   filter: invert(0) !important;
+// }*/
