@@ -1,10 +1,9 @@
 ---
 ---
-
 @charset "UTF-8";
 
-// 使用 @use 规则导入主题的默认样式
-@use "main";
+// 1. 使用 Jekyll 的方式，明确地导入整个 gem 包主题
+@import "{{ site.theme }}";
 
-// 使用 @use 规则导入您的自定义样式
-@use "custom/custom";
+// 2. 在主题加载完毕后，导入您自己的自定义样式
+@import "custom/custom";
