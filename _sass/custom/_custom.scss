@@ -15,10 +15,11 @@
 [data-bs-toggle="collapse"][aria-expanded="true"] > .transition-transform {
   transform: rotate(-180deg);
 }
-html[data-bs-theme="dark"] div.collapse div.card div.card.card-body {
-  background-color: #2d3235 !important;
-  --bs-card-border-color: #424242;
+
+[data-mode="dark"] .collapse[id] > .card-body {
+  background-color: #2d3235;
   color: #e8e6e3;
+  border-color: #424242;
 }
 
 // @keyframes scroll-background {
