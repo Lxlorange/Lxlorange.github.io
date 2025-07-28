@@ -160,14 +160,12 @@ script_includes:
       "
     >
       <div class="license-wrapper">
-        {% if site.data.locales[lang].copyright.license.template %}
-          {% capture _replacement %}
-        <a href="{{ site.data.locales[lang].copyright.license.link }}">
-          {{ site.data.locales[lang].copyright.license.name }}
-        </a>
-        {% endcapture %}
-
-          {{ site.data.locales[lang].copyright.license.template | replace: ':LICENSE_NAME', _replacement }}
+        {%- assign post_license_key = page.license | default: site.license.default -%}
+        {%- assign post_license = site.licenses[post_license_key] -%}
+        {% if post_license %}
+          <p class="mb-0">
+            本文由作者按照 <a href="{{ post_license.url }}" target="_blank" rel="noopener noreferrer">{{ post_license.name }}</a> 进行授权
+          </p>
         {% endif %}
       </div>
 

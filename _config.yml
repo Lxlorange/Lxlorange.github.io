@@ -204,3 +204,21 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+
+license:
+  default: "CC BY 4.0"
+
+licenses:
+  "CC BY 4.0":
+    name: "CC BY 4.0"
+    url: "https://creativecommons.org/licenses/by/4.0/deed.zh-Hans"
+  "CC BY-NC-SA 4.0":
+    name: "CC BY-NC-SA 4.0"
+    url: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-Hans"
+  "CC BY-ND":
+    name: "CC BY-ND 4.0"
+    url: "https://creativecommons.org/licenses/by-nd/4.0/deed.zh-Hans"
+  "CC BY-NC-ND 4.0":
+    name: "CC BY-NC-ND 4.0"
+    url: "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-Hans"
