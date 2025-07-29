@@ -22,6 +22,11 @@
   border-color: #424242;
 }
 
+#solution-toast {
+  // 让警告弹窗的边框更显眼
+  --bs-toast-border-color: var(--bs-warning-border-subtle);
+}
+
 // @keyframes scroll-background {
 //   from {
 //     background-position: 0 0;

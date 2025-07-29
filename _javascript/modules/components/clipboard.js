@@ -84,6 +84,10 @@ function setCodeClipboard() {
 
     e.clearSelection();
 
+    if (shouldShowWarning && solutionToast) {
+      solutionToast.show();
+    }
+
     if (isLocked(trigger)) {
       return;
     }
