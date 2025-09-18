@@ -13,10 +13,10 @@ tagline: 一个普通软工杂鱼的一本普通学习笔记
 description: >-
   电子笔记，记录软件工程专业课知识，以及学习过程中的思考的博客。
 
-url: "https://xiangluanliang.github.io"
+url: "https://Lxlorange.github.io"
 
 github:
-  username: xiangluanliang
+  username: Lxlorange
 
 bilibili:
   username: 凉香栾
@@ -25,7 +25,7 @@ social:
   name: 凉香栾
   email: orangelxl741216@gmail.com
   links:
-    - https://github.com/xiangluanliang     # github
+    - https://github.com/Lxlorange     # github
     # - https://space.bilibili.com/456009262  # bilibili
     - mailto:orangelxl741216@gmail.com      # email
 
