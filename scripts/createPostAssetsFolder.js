@@ -18,7 +18,7 @@ module.exports = {
     }
 
     const slug = slugify(postTitle);
-    const folderPath = `assets/img/${slug}`;
+    // const folderPath = `assets/img/${slug}`;
     const date = new Date().toISOString().slice(0, 10);
     const dateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const filePath = `_posts/${date}-${slug}.md`;
@@ -35,24 +35,23 @@ pin: false
 math: true
 mermaid: true
 comment: true
-media_subpath: "${slug}"
-image:
-  path: cover.jpg
-  lqip:
-  alt: "${postTitle}"
 ---
-
 `;
+// media_subpath: "${slug}"
+// image:
+//   path: cover.jpg
+//   lqip:
+//   alt: "${postTitle}"
 
     // 3. 创建文件夹
-    try {
-      await app.vault.createFolder(folderPath);
-    } catch (e) {
-      if (!e.message.includes("already exists")) {
-        notice(`❌ 创建文件夹失败: ${e.message}`);
-        return;
-      }
-    }
+    // try {
+    //   await app.vault.createFolder(folderPath);
+    // } catch (e) {
+    //   if (!e.message.includes("already exists")) {
+    //     notice(`❌ 创建文件夹失败: ${e.message}`);
+    //     return;
+    //   }
+    // }
 
     // 4. 创建文章文件
     if (await app.vault.adapter.exists(filePath)) {
