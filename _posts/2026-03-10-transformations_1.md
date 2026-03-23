@@ -1,5 +1,5 @@
 ---
-title: 计算机图形学：变换（一）
+title: 模型变换
 author: 凉香栾
 date: 2026-03-10 07:31:19 +0800
 categories:
@@ -27,9 +27,11 @@ comment: true
 
 线性变换顾名思义，**直线变换后依然是直线，且原点保持不动**。线性变换用矩阵乘法可以表示为：
 
+
 $$
 T(\mathbf{v}) = A \mathbf{v}
 $$
+
 
 对于向量空间$V$中的任意向量$\mathbf{uv}$和标量$c$，变换$T$满足：
 
@@ -42,7 +44,11 @@ $$
 
 - **缩放 (Scaling)**
 
+
+
 $$X' = \begin{pmatrix} s_x & 0 \\ 0 & s_y \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}$$
+
+
 当 $s_x = s_y$ 时为等比例缩放，物体大小改变但形状不变；若两者不相等，物体就会发生拉伸或压扁。
 
 - **反射 (Reflection)**
@@ -50,9 +56,17 @@ $$X' = \begin{pmatrix} s_x & 0 \\ 0 & s_y \end{pmatrix} \begin{pmatrix} x \\ y \
 可以看作是**负数缩放**的特例。
 
 以 $y$ 轴为对称轴进行反射，既 $y$ 轴进行$-1$倍缩放。
+
+
 $$M_{ref\_y} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$$
+
+
 同理，若以 $x$ 轴为对称轴进行反射，矩阵为：
+
+
 $$M_{ref\_x} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
+
+
 
 - **切变 (Shearing)**
 
@@ -60,17 +74,29 @@ $$M_{ref\_x} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
 
 以沿 $x$ 轴的水平切变为例：点的高度（$y$ 坐标）保持不变，但点的水平位置（$x$ 坐标）会随着它所在高度的不同而发生偏移。偏移量与 $y$ 成正比，设比例因子为 $sh_x$。
 其代数关系为：
+
+
 $$X' = \begin{pmatrix} 1 & sh_x \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}$$
+
+
 
 - **旋转 (Rotation)**
 
 以 2D 旋转矩阵为例，将点绕原点逆时针旋转 $\theta$ 角，假设点到原点的距离为 $r$，初始与横轴夹角为 $\phi$，则原始坐标可以表示为：
+
+
 $$x=r\cos\phi$$
 $$y=r\sin\phi$$
+
+
 利用三角函数的和角公式可得：
+
+
 $$x'=r\cos(\phi+\theta)=r\cos\phi\cos\theta-r\sin\phi\sin\theta=x\cos\theta-y\sin\theta$$
 $$y'=r\sin(\phi+\theta)=r\sin\phi\cos\theta+r\cos\phi\sin\theta=x\sin\theta+y\cos\theta$$
+
 整理可得：
+
 $$X'=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}$$
 
 - **复合变换 (Composite Transformations)**
@@ -92,6 +118,7 @@ $$
 ## 仿射变换与齐次坐标
 
 ### 平移（Translation）
+
 平移操作 $X'=X+\begin{pmatrix}t_x\\t_y\end{pmatrix}$是一个**仿射变换（Affine Transformation）**，无法找到一个 $2\times2$ 矩阵$M$ 使得 $X'=MX$。
 
 然而如果平移不能写成矩阵乘法，我们就无法将连续的多个变换融合成一个单一的矩阵。
@@ -138,6 +165,7 @@ $$
 细心的读者可能已经从中发现了规律，并且发现只有$R_{y}(\beta)$的符号不同。这是因为我们使用的右手坐标系具有旋转轮换性，当我们说“**绕某个轴进行正向（逆时针）旋转**”时，其实是站在该轴的正半轴看向原点。因此绕 $y$ 轴旋转：是在 $zOx$ 平面内旋转，方向必须是  $z \to x$ ，导致这里使用的旋转矩阵实际上被**转置**了。
 
 令 $\cos$ 为 $c$，$\sin$ 为 $s$，依次相乘可以得到：
+
  $$R= R_z(\alpha) R_y(\beta) R_x(\gamma) = \begin{pmatrix} c_\alpha c_\beta & c_\alpha s_\beta s_\gamma - s_\alpha c_\gamma & c_\alpha s_\beta c_\gamma + s_\alpha s_\gamma \\ s_\alpha c_\beta & s_\alpha s_\beta s_\gamma + c_\alpha c_\gamma & s_\alpha s_\beta c_\gamma - c_\alpha s_\gamma \\ -s_\beta & c_\beta s_\gamma & c_\beta c_\gamma \end{pmatrix}$$
 
 旋转矩阵 $R$ 可以表示先绕 $x$ 轴旋转 $\gamma$ (Roll，翻滚)；再绕 $y$ 轴旋转 $\beta$ (Pitch，俯仰)；最后绕 $z$ 轴旋转 $\alpha$ (Yaw，偏航) 的旋转行为。矩阵乘法没有交换性，定义顺序是必要的，这里选择的顺序比较常用。
@@ -162,7 +190,9 @@ $$
 对于任意 3D 旋转矩阵 $R$，它是一个正交矩阵（则 $R^T R = I$）且行列式为 $1$ （因为旋转一个物体，物体内部任意两点之间的**距离**不会变，任意两条线段之间的**夹角**也不会变） 。
 
 下求$\det(R-I)$:
+
 $$\begin{aligned} \det(R - I) &= \det(R - R R^T) \\ &= \det(R(I - R^T)) \\ &= \det(R) \det(I - R^T) \\ & = 1 \cdot \det(I-R) \\ & = (-1) ^3 \det(R- I)\end{aligned}$$
+
 可得 $\det (R -I) = 0$，说明 $\lambda = 1$ 确实是旋转矩阵的特征值，证毕。我们证明了**欧拉旋转定理**。
 
 
@@ -186,7 +216,9 @@ R &= [\mathbf{u}, \mathbf{v}, \mathbf{n}] \begin{pmatrix} \cos\theta & -\sin\the
 根据三重向量积的性质，矩阵 $(\mathbf{v}\mathbf{u}^T - \mathbf{u}\mathbf{v}^T)$ 作用于任何向量，其效果等价于用 $\mathbf{n}$ 去叉乘该向量。我们可以将其替换为 $\mathbf{n}$ 的反对称矩阵（叉乘矩阵），记作 $N$ 或 $[\mathbf{n}]_\times$。
 
 代入整理可得：
+
 $$R = \cos\theta I + (1 - \cos\theta)\mathbf{n}\mathbf{n}^T + \sin\theta N$$
+
 这就是罗德里格斯旋转公式。
 
 
@@ -196,6 +228,7 @@ $$R = \cos\theta I + (1 - \cos\theta)\mathbf{n}\mathbf{n}^T + \sin\theta N$$
 
 假设我们已经通过罗德里格斯旋转公式（或其他什么方式都行）得到了一个确定的 $3\times3$ 旋转矩阵 $R$，它的每一个元素都是已知的常数：
 
+
 $$R = \begin{pmatrix} r_{11} & r_{12} & r_{13} \\ r_{21} & r_{22} & r_{23} \\ r_{31} & r_{32} & r_{33} \end{pmatrix}$$
 
 之前已经求过欧拉角表示的旋转矩阵，只需要用对应元素相等的方法求解方程组$R_z(\alpha) R_y(\beta) R_x(\gamma) = R$ 即可。
@@ -204,8 +237,12 @@ $$R = \begin{pmatrix} r_{11} & r_{12} & r_{13} \\ r_{21} & r_{22} & r_{23} \\ r_
 1. **求解 $\beta$ (Pitch, 绕 Y 轴)**
 
 观察展开后的矩阵，左下角的值 $r_{31}$ 最简单：
+
 $$r_{31} = -\sin\beta$$
+
+
 $$\beta = \arcsin(-r_{31})$$
+
 
 _(通常我们限制 $\beta \in [-\frac{\pi}{2}, \frac{\pi}{2}]$ 以保证多解情况下的唯一性。)_
 
@@ -214,18 +251,26 @@ _(通常我们限制 $\beta \in [-\frac{\pi}{2}, \frac{\pi}{2}]$ 以保证多解
 观察最下面一行的另外两个元素：
 
 $$r_{32} = \cos\beta \sin\gamma$$
+
+
 $$r_{33} = \cos\beta \cos\gamma$$
+
+
 $$\frac{r_{32}}{r_{33}} = \frac{\cos\beta \sin\gamma}{\cos\beta \cos\gamma} = \tan\gamma$$
 
 所以 $\gamma = \arctan\left(\frac{r_{32}}{r_{33}}\right)$。
 
+
 > 在实际代码实现中，直接使用 $\arctan$ 会导致丢失象限信息（因为 $\frac{-y}{-x}$ 和 $\frac{y}{x}$ 的结果一样），并且当 $r_{33}=0$ 时会导致除零异常。因此，在任何编程语言（如 C++, Java, Python）中，求这两个角都使用 `atan2(y, x)` 函数。
+
 
 3. **求解 $\alpha$ (Yaw, 绕 Z 轴)**
 
 同理，观察第一列的另外两个元素：
 
 $$r_{21} = \sin\alpha \cos\beta$$
+
+
 $$r_{11} = \cos\alpha \cos\beta$$
 
 同样$\alpha = \arctan\left( \frac{r_{21} }{r_{11}} \right)$
@@ -244,16 +289,26 @@ $$R_{\beta=90^\circ} = \begin{pmatrix} 0 & \sin(\gamma - \alpha) & \cos(\gamma -
 
 ### 四元数 (Quaternion) 
 
-> 对于目前的笔者来着这属于扩展知识，笔者也没有深入研究，只在此做简单介绍。
+> 对于目前的笔者来说，这部分属于扩展知识，笔者也没有深入研究，只在此做简单介绍。
 
 四元数衍生于轴角法，本质上是把轴+角的信息包装进一个四维的复数空间中。一个用于表示旋转的单位四元数 $q$ 可以写成一个标量和一个 3D 向量的组合：
 
 $$q = \left( \cos\left(\frac{\theta}{2}\right), \mathbf{n}\sin\left(\frac{\theta}{2}\right) \right)$$
 
-现代图形学基本都会使用四元数，核心原因有三个：
+现代图形学基本都会使用四元数处理旋转，核心原因有三个：
 
 - 可以避免万向节死锁。
 - 插值平滑。在计算机中模拟物体从姿态 A 平滑过渡到姿态 B 时，直接对欧拉角的三个数值或矩阵进行线性插值，会导致物体发生奇怪的扭曲或非匀速转动。而四元数支持“球面线性插值”（Spherical Linear Interpolation），能够算出两点间的最短弧线，从而实现更平滑的旋转动画。
 - 计算开销小。一个 $3\times3$ 的旋转矩阵需要存 9 个浮点数，而四元数只需要 4 个 $(w, x, y, z)$。
 
+
+## 模型变换总结
+
+如果有人看完本文上述内容却对为什么要进行模型变换仍不知所以，可以思考这样一个情景：
+
+在一个游戏场景空间内，我想放置一个做好的模型。这个模型在做的时候并不知道它将要被放在哪里，所以只好取自身某个点（例如中心）为原点，并记录其它顶点的坐标。
+
+那此时我希望把模型中心放在世界坐标$(100,100,100)$的位置，并对模型进行缩放和旋转的设置。如果这时候对每个顶点都执行一边对模型中心的操作，性能开销显然会变得很大——越复杂的模型越是如此。
+
+所以模型变换的意义就在于，我们可以先设定好模型要做的缩放、旋转和平移操作，利用模型变换的方法将所有操作表示为一个矩阵$M_{model}$ ，而引入的模型默认放在世界坐标的原点，这样只需要一次矩阵乘法的操作就能实现我们想要的结果，这将会非常经济。
 
