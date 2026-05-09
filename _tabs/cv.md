@@ -5,18 +5,6 @@ icon: fas fa-graduation-cap
 order: 1
 ---
 
-<style>
-  .post-content ul li, .post-content ol li {
-    word-break: break-word;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    margin-bottom: 0.5rem;
-  }
-
-  .post-content a {
-    word-break: break-all;
-  }
-</style>
 
 ## 个人简介
 
