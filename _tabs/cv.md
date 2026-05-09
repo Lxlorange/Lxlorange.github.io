@@ -35,16 +35,19 @@ order: 1
 ## 科研成果
 
 ### 发表论文
-- **[MSN 2025]** **Attention-Driven CNN-Transformer Fusion Network Architecture for End-to-End Hybrid Precoding in FDD Massive MIMO-OFDM Systems** *Secondary Author* | CCF-C类会议
-  - 提出注意力驱动的融合架构，利用 RepVGG 与 Transformer 捕获特征相关性，优化端到端信号传输。
 
-- **[WASA 2026]** **Continuous Spatial Optimization of Movable Antennas in MIMO Systems via Transformer-GRU Architecture** *First Author* | Under Review (CCF-C类)
+- **Continuous Spatial Optimization of Movable Antennas in MIMO Systems via Transformer-GRU Architecture**
+  - *First Author* **[WASA 2026]** CCF-C类会议  (Under Review)
   - 提出 TG-MAO 神经优化器，构建基于特征值分解 (EVD) 的可微计算图，解决可移动天线高度非凸的坐标优化挑战。
 
+- **Attention-Driven CNN-Transformer Fusion Network Architecture for End-to-End Hybrid Precoding in FDD Massive MIMO-OFDM Systems** 
+  - *Secondary Author* **[MSN 2025]** CCF-C类会议
+  - 提出注意力驱动的融合架构，利用 RepVGG 与 Transformer 捕获特征相关性，优化端到端信号传输。
+
 ### 科研项目
-- **北京市自然科学基金 - 本科生“启研”计划** | 2026.04 - 至今
+- **北京市自然科学基金 - 本科生“启研”计划** (2026.04 - 至今)
   - *课题*: 注意力驱动的面向可移动天线与时序预测的端到端混合预编码网络（省部级推荐立项）。
-- **大学生创新创业训练计划** | 2025.05 - 2026.04
+- **大学生创新创业训练计划** (2025.05 - 2026.04)
   - *课题*: 基于深度学习的大规模 MIMO-OFDM 系统的混合波束成形（已产出 MSN 2025 论文）。
 
 ---
