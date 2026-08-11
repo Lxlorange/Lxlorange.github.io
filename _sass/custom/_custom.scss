@@ -1,11 +1,38 @@
 /* ============================================================
-   Custom styles for 柚子的笔记
-   Inspired by air.moe, spaces.ac.cn, luckykeeper.site, xuanworld.top
+   Custom styles — minimal, integrated with Chirpy theme
    ============================================================ */
 
-/* ----------------------------------------------------------
-   1. Reading Progress Bar
-   ---------------------------------------------------------- */
+/* ---------- Card hover effect (home page posts) ---------- */
+.post-preview {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 12px;
+}
+.post-preview:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Collapse arrow rotation ---------- */
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+[data-bs-toggle="collapse"][aria-expanded="true"] > .transition-transform {
+  transform: rotate(-180deg);
+}
+
+/* ---------- Dark mode: collapsible card body ---------- */
+[data-mode="dark"] .collapse[id] > .card-body {
+  background-color: #2d3235;
+  color: #e8e6e3;
+  border-color: #424242;
+}
+
+/* ---------- Solution toast border ---------- */
+#solution-toast {
+  --bs-toast-border-color: var(--bs-warning-border-subtle);
+}
+
+/* ---------- Reading progress bar (thin, unobtrusive) ---------- */
 #reading-progress {
   position: fixed;
   top: 0;
@@ -17,429 +44,11 @@
   transition: width 0.15s ease-out;
   pointer-events: none;
 }
-
 [data-mode="dark"] #reading-progress {
   background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
 }
 
-/* ----------------------------------------------------------
-   2. Typography
-   ---------------------------------------------------------- */
+/* ---------- Smooth scrolling ---------- */
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* 正文行高 — 中文阅读舒适区 */
-.content {
-  font-size: 1.02rem;
-  line-height: 1.88;
-}
-
-/* 段落间距 */
-.content > p {
-  margin-bottom: 1.15em;
-}
-
-/* 标题优化 */
-.content h2 {
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid var(--main-border-color);
-}
-
-.content h3 {
-  font-weight: 650;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-.content h4 {
-  font-weight: 600;
-  margin-top: 1.5rem;
-}
-
-/* 首篇无上边距 */
-.content > h2:first-child {
-  margin-top: 0.5rem;
-}
-
-/* ----------------------------------------------------------
-   3. Text Selection
-   ---------------------------------------------------------- */
-::selection {
-  background: rgba(79, 172, 254, 0.25);
-  color: inherit;
-}
-
-[data-mode="dark"] ::selection {
-  background: rgba(102, 126, 234, 0.35);
-}
-
-/* ----------------------------------------------------------
-   4. Links — gradient underline on hover
-   ---------------------------------------------------------- */
-a:not(.nav-link):not(.btn):not(.post-tag):not(.tag):not(.page-link):not(.category-trigger):not(#avatar) {
-  text-decoration: none;
-  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-  background-size: 0% 1.5px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.3s ease;
-  padding-bottom: 1px;
-}
-
-a:not(.nav-link):not(.btn):not(.post-tag):not(.tag):not(.page-link):not(.category-trigger):not(#avatar):hover {
-  background-size: 100% 1.5px;
-}
-
-[data-mode="dark"] a:not(.nav-link):not(.btn):not(.post-tag):not(.tag):not(.page-link):not(.category-trigger):not(#avatar) {
-  background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
-  background-size: 0% 1.5px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.3s ease;
-  padding-bottom: 1px;
-}
-
-[data-mode="dark"] a:not(.nav-link):not(.btn):not(.post-tag):not(.tag):not(.page-link):not(.category-trigger):not(#avatar):hover {
-  background-size: 100% 1.5px;
-}
-
-/* Keep underline for TOC links */
-#toc-wrapper a {
-  background: none !important;
-  padding-bottom: 0 !important;
-}
-
-/* Keep nav/sidebar links clean */
-.nav-link, .btn, .post-tag, .tag, .page-link, .category-trigger {
-  background: none !important;
-  padding-bottom: 0 !important;
-}
-
-/* ----------------------------------------------------------
-   5. Code Blocks — macOS-style title bar
-   ---------------------------------------------------------- */
-/* Rounded corners for code blocks */
-div.highlighter-rouge,
-figure.highlight {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-  margin: 1.5rem 0;
-}
-
-[data-mode="dark"] div.highlighter-rouge,
-[data-mode="dark"] figure.highlight {
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Code block header — make it look like a macOS title bar */
-div.highlighter-rouge > div.code-header,
-figure.highlight > figcaption {
-  background: #2b2d31;
-  color: #c9d1d9;
-  border-bottom: 1px solid #3a3d42;
-  padding: 0 1rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  font-size: 0.8rem;
-  font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
-  position: relative;
-}
-
-/* macOS-style colored dots (decorative, placed before the header text) */
-div.highlighter-rouge > div.code-header::before,
-figure.highlight > figcaption::before {
-  content: '';
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: #ff5f56;
-  box-shadow:
-    20px 0 0 #ffbd2e,
-    40px 0 0 #27c93f;
-}
-
-/* Code block content area */
-div.highlighter-rouge > div.highlight,
-figure.highlight > pre {
-  border-radius: 0 0 10px 10px;
-  margin: 0;
-}
-
-/* Inline code */
-:not(pre) > code {
-  background: var(--inline-code-bg);
-  color: #e83e8c;
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-  font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
-  font-feature-settings: 'liga' 1, 'calt' 1;
-  word-break: break-word;
-}
-
-[data-mode="dark"] :not(pre) > code {
-  color: #f0a0c0;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Better code font in pre blocks */
-pre, code {
-  font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
-}
-
-pre code {
-  font-feature-settings: 'liga' 1, 'calt' 1;
-}
-
-/* ----------------------------------------------------------
-   6. Images
-   ---------------------------------------------------------- */
-.content img:not(.avatar):not(.no-style) {
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  display: block;
-  margin: 1.5rem auto;
-  max-width: 100%;
-  height: auto;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.content img:not(.avatar):not(.no-style):hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  cursor: zoom-in;
-}
-
-[data-mode="dark"] .content img:not(.avatar):not(.no-style) {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-[data-mode="dark"] .content img:not(.avatar):not(.no-style):hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* ----------------------------------------------------------
-   7. Card Hover Effects (Home page posts)
-   ---------------------------------------------------------- */
-.post-preview {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.post-preview:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-}
-
-[data-mode="dark"] .post-preview:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* ----------------------------------------------------------
-   8. Blockquote / Callout styling
-   ---------------------------------------------------------- */
-blockquote {
-  border-left: 4px solid #4facfe;
-  border-radius: 0 8px 8px 0;
-  background: rgba(79, 172, 254, 0.05);
-  padding: 1rem 1.25rem;
-  margin: 1.5rem 0;
-  font-style: normal;
-}
-
-[data-mode="dark"] blockquote {
-  border-left-color: #667eea;
-  background: rgba(102, 126, 234, 0.08);
-}
-
-/* Chirpy prompt callouts */
-blockquote.prompt-tip {
-  border-left-color: #42b983;
-  background: rgba(66, 185, 131, 0.06);
-}
-blockquote.prompt-warning {
-  border-left-color: #e7c000;
-  background: rgba(231, 192, 0, 0.06);
-}
-blockquote.prompt-danger {
-  border-left-color: #f66;
-  background: rgba(255, 102, 102, 0.06);
-}
-blockquote.prompt-info {
-  border-left-color: #4facfe;
-  background: rgba(79, 172, 254, 0.06);
-}
-
-[data-mode="dark"] blockquote.prompt-tip {
-  background: rgba(66, 185, 131, 0.1);
-}
-[data-mode="dark"] blockquote.prompt-warning {
-  background: rgba(231, 192, 0, 0.1);
-}
-[data-mode="dark"] blockquote.prompt-danger {
-  background: rgba(255, 102, 102, 0.1);
-}
-[data-mode="dark"] blockquote.prompt-info {
-  background: rgba(79, 172, 254, 0.1);
-}
-
-/* ----------------------------------------------------------
-   9. Tables
-   ---------------------------------------------------------- */
-.content table {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-  margin: 1.5rem 0;
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.content th {
-  background: #f6f8fa;
-  font-weight: 600;
-  padding: 0.65rem 1rem;
-  border-bottom: 2px solid var(--main-border-color);
-}
-
-[data-mode="dark"] .content th {
-  background: #2d3235;
-}
-
-.content td {
-  padding: 0.55rem 1rem;
-  border-bottom: 1px solid var(--main-border-color);
-}
-
-.content tr:last-child td {
-  border-bottom: none;
-}
-
-/* ----------------------------------------------------------
-   10. Dark Mode Refinements
-   ---------------------------------------------------------- */
-[data-mode="dark"] .card {
-  background-color: #252830;
-  border-color: #3a3d42;
-}
-
-[data-mode="dark"] .collapse[id] > .card-body {
-  background-color: #2d3235;
-  color: #e8e6e3;
-  border-color: #424242;
-}
-
-/* Smoother theme transitions */
-body, .card, .post-preview, pre, code, blockquote, img, a,
-.sidebar, .topbar, .panel, footer {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* ----------------------------------------------------------
-   11. Back to Top Button
-   ---------------------------------------------------------- */
-#back-to-top {
-  border-radius: 50%;
-  width: 2.75rem;
-  height: 2.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-  opacity: 0.85;
-}
-
-#back-to-top:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
-  opacity: 1;
-}
-
-[data-mode="dark"] #back-to-top {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-}
-
-/* ----------------------------------------------------------
-   12. Post Description / Meta
-   ---------------------------------------------------------- */
-.post-meta {
-  font-size: 0.9rem;
-  color: var(--text-muted-color);
-}
-
-/* Reading time badge */
-.post-meta .readtime {
-  opacity: 0.8;
-}
-
-/* ----------------------------------------------------------
-   13. Responsive Fine-tuning
-   ---------------------------------------------------------- */
-@media (max-width: 849px) {
-  .content {
-    font-size: 0.98rem;
-    line-height: 1.78;
-  }
-
-  .content h2 {
-    font-size: 1.35rem;
-    margin-top: 2rem;
-  }
-
-  .content h3 {
-    font-size: 1.15rem;
-    margin-top: 1.5rem;
-  }
-
-  div.highlighter-rouge,
-  figure.highlight {
-    border-radius: 8px;
-    margin: 1.2rem -0.5rem;
-  }
-}
-
-/* ----------------------------------------------------------
-   14. Horizontal Rule
-   ---------------------------------------------------------- */
-.content hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--main-border-color), transparent);
-  margin: 2.5rem 0;
-}
-
-/* ----------------------------------------------------------
-   15. Footnotes
-   ---------------------------------------------------------- */
-.footnotes {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--main-border-color);
-  font-size: 0.9rem;
-  color: var(--text-muted-color);
-}
-
-/* ----------------------------------------------------------
-   16. Solution Toast (existing)
-   ---------------------------------------------------------- */
-#solution-toast {
-  --bs-toast-border-color: var(--bs-warning-border-subtle);
 }
