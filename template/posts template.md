@@ -1,5 +1,6 @@
 ---
 title: {{VALUE}}
+slug: {{VALUE:english-slug}}
 author: 凉香栾
 date: {{DATE:YYYY-MM-DD HH:mm:ss}} +0800
 categories:

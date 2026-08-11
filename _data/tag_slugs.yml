@@ -1,0 +1,15 @@
+# Tag slug mapping: 中文标签 → English URL slug
+# All tags used in posts must have a mapping here to avoid Chinese characters in URLs
+
+算法: algorithms
+分治: divide-and-conquer
+贪婪: greedy
+动态规划: dynamic-programming
+回溯: backtracking
+分支限界: branch-and-bound
+笔记: notes
+组成原理: computer-organization
+机器学习: machine-learning
+线性代数: linear-algebra
+运动学: kinematics
+C++: cpp

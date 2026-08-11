@@ -12,8 +12,12 @@ layout: page
   {% assign sorted_tags = tags | sort_natural %}
 
   {% for t in sorted_tags %}
+    {% assign tag_slug = site.data.tag_slugs[t] | default: t | slugify: 'latin' %}
+    {% if tag_slug == empty %}
+      {% assign tag_slug = t | downcase | replace: ' ', '-' | replace: '--', '-' %}
+    {% endif %}
     <div>
-      <a class="tag" href="{{ t | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}">
+      <a class="tag" href="{{ tag_slug | prepend: '/tags/' | append: '/' | relative_url }}">
         {{ t -}}
         <span class="text-muted">{{ site.tags[t].size }}</span>
       </a>

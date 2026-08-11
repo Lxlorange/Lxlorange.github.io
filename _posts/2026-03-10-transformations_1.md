@@ -1,6 +1,7 @@
 ---
 title: 模型变换
-slug: mo-xing-bian-huan
+slug: model-transformation
+redirect_from: /posts/mo-xing-bian-huan/
 author: 凉香栾
 date: 2026-03-10 07:31:19 +0800
 categories:

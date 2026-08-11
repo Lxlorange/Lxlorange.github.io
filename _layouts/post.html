@@ -144,8 +144,9 @@ script_includes:
       <div class="post-tags">
         <i class="fa fa-tags fa-fw me-1"></i>
         {% for tag in page.tags %}
+          {% assign tag_slug = site.data.tag_slugs[tag] | default: tag | slugify: 'latin' %}
           <a
-            href="{{ site.baseurl }}/tags/{{ tag | slugify | url_encode }}/"
+            href="{{ tag_slug | prepend: '/tags/' | append: '/' | relative_url }}"
             class="post-tag no-text-decoration"
           >
             {{- tag -}}

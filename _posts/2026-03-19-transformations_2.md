@@ -1,6 +1,7 @@
 ---
 title: 观测变换
-slug: guan-ce-bian-huan
+slug: view-projection-transformation
+redirect_from: /posts/guan-ce-bian-huan/
 author: 凉香栾
 date: 2026-03-19 12:06:02 +0800
 categories:

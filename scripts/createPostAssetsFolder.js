@@ -7,7 +7,7 @@ module.exports = {
     const slugify = (text) => {
       if (!text) return "";
       return text.toString().toLowerCase().trim()
-        .replace(/[\s_]+/g, '-').replace(/[^\w\u4e00-\u9fa5\-]+/g, '')
+        .replace(/[\s_]+/g, '-').replace(/[^\w\-]+/g, '')
         .replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
     };
 
@@ -17,7 +17,13 @@ module.exports = {
       return;
     }
 
-    const slug = slugify(postTitle);
+    // Prompt for English slug (方案一: semantic English, 方案二: auto pinyin fallback)
+    const defaultSlug = slugify(postTitle);
+    const slug = await quickAddApi.inputPrompt(
+      "英文 Slug (如 rasterization-pipeline，留空则使用自动生成)",
+      defaultSlug
+    ) || defaultSlug;
+
     // const folderPath = `assets/img/${slug}`;
     const date = new Date().toISOString().slice(0, 10);
     const dateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -25,11 +31,12 @@ module.exports = {
 
     const fileContent = `---
 title: ${postTitle}
+slug: ${slug}
 author: 凉香栾
 date: ${dateTime} +0800
 categories:
 tags:
-description: 
+description:
 toc: true
 pin: false
 math: true
