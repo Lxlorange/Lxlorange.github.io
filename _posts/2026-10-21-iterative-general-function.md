@@ -55,7 +55,7 @@ def improve(x):
 
 ### 方法一
 
-我们希望误差逐步变小，所以构造$e_{n+1} = e_{n}^2$，不妨假设$0<Ax_{n}<1$现在反解$x_{n+1}$:
+我们希望误差逐步变小，所以构造$e_{n+1} = e_{n}^2$，不妨假设 $0<Ax_{n}<1$ 现在反解$x_{n+1}$:
 
 $$
 e_{n+1} = 1- Ax_{n+1} 
@@ -143,7 +143,7 @@ def sqrt(A):
 	return improve(sqrt_update,sqrt_close)
 ```
 
-这两个例子很好地体现了通用函数的“**通用性**”。[John DeNero](http://www.denero.org/)所著的[Composing Programs](https://composingprograms.com/)一书中指出，这种设计体现了计算机科学中两个至关重要的思想：
+这两个例子很好地体现了通用函数的“**通用性**”。[John DeNero](https://www.denero.org/)所著的[Composing Programs](https://composingprograms.com/)一书中指出，这种设计体现了计算机科学中两个至关重要的思想：
 
 1. 命名和函数使得我们可以抽象掉大量的复杂性。每个函数的定义都是简单的，整个计算过程却精巧而复杂。
 2. 这些小组件能够组成复杂过程，得益于编程语言（例如Python）拥有通用的求值流程。理解程序对这个求值流程的解释有助于我们检查和验证我们创造的这些过程。
