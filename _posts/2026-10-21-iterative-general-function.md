@@ -8,7 +8,7 @@ categories:
 tags:
   - 算法
   - python
-description: 计算机科学中的数学方法
+description: 计算机科学中的数学方法第1节。
 toc: true
 pin: false
 math: true
@@ -39,16 +39,16 @@ $$
 
 ```python
 def close(x):
-	return abs(A*x-1) <= epsilon
+    return abs(A*x-1) <= epsilon
 ```
 
 于是，我们立刻想到，希望可以找到一个函数$F(x_{n}) = x_{n+1}$，使得新值的误差相比原来的下降，这样我们就可以迭代了：
 
 ```python
 def improve(x):
-	while not close(x):
-		x = F(x)
-	return x
+    while not close(x):
+        x = F(x)
+    return x
 ```
 
 关于如何得到$F(x)$，历史上我们有很多方法，比如大名鼎鼎的牛顿迭代法和自举法。但这里我想要避开导数和级数，先提供两个我觉得更符合直觉的办法。
@@ -89,7 +89,7 @@ $$
 
 ```python
 def F(x):
-	return x*(2-A*x)
+    return x*(2-A*x)
 ```
 
 这样只要给定`A, epsilon`和合适的初始值`x0`就可以得到我们想要的结果了。
@@ -112,9 +112,9 @@ def F(x):
 
 ```python
 def improve(update,close,guess=1):
-	while not close(guess):
-		guess = update(guess)
-	return guess
+    while not close(guess):
+        guess = update(guess)
+    return guess
 ```
 
 然而无论是倒数还是求根，都需要两个输入参数：目标值`A`和记录迭代过程的`guess`（之前推导时把`A`放到全局变量里的行为不利于封装和调用），我们的通用函数`improve`只接受一个参数。此时我们并不需要修改这个通用函数——这正是其通用性的体现——而是把函数放进另一个函数的体内进行封装：
@@ -125,22 +125,22 @@ def close(x, y, epsilon=1e-15):
      return abs(x-y) <= epsilon
      
 def reciprocal(A):
-	def reciprocal_update(x):
-		return x*(2-A*x)
-	def reciprocal_close(x):
-		return close(A*x,1)
-	return improve(reciprocal_update,reciprocal_close)
+    def reciprocal_update(x):
+        return x*(2-A*x)
+    def reciprocal_close(x):
+        return close(A*x,1)
+    return improve(reciprocal_update,reciprocal_close)
 ```
 
 用同样的方法，可以很轻易地构造求根函数：
 
 ```python
 def sqrt(A):
-	def sqrt_update(x):
-		return (x+A/x)/2
-	def sqrt_close(x):
-		return close(x,A/x)
-	return improve(sqrt_update,sqrt_close)
+    def sqrt_update(x):
+        return (x+A/x)/2
+    def sqrt_close(x):
+        return close(x,A/x)
+    return improve(sqrt_update,sqrt_close)
 ```
 
 这两个例子很好地体现了通用函数的“**通用性**”。[John DeNero](https://www.denero.org/)所著的[Composing Programs](https://composingprograms.com/)一书中指出，这种设计体现了计算机科学中两个至关重要的思想：
@@ -156,20 +156,20 @@ def sqrt(A):
 
 ```python
 def find_zero(f,df):
-	def near_zero(x): 
-		return close(f(x), 0) 
-	return improve(newton_update(f,df), near_zero)
+    def near_zero(x): 
+        return close(f(x), 0) 
+    return improve(newton_update(f,df), near_zero)
 ```
 
 例如求根，定义$f(x) = x^2 - A$，找到这个函数的零点就等于求出了$\sqrt{A}$，所以：
 
 ```python
 def sqrt(A):
-	def f(x):
-		return x*x-A
-	def df(x):
-		return 2*x
-	return find_zero(f,df)
+    def f(x):
+        return x*x-A
+    def df(x):
+        return 2*x
+    return find_zero(f,df)
 ```
 
 这比之前看上去又简洁了不少。
@@ -186,6 +186,25 @@ def newton_update(f,df):
 简单明了，不是吗？
 
 牛顿法本身具有一定的局限性，比如初始猜测要足够接近我们期望获得的零点，函数本身也要满足一些条件，不过后续数学家也对它做了一些改进。作为程序编写者，我们总是从数学家那里获得更先进的技巧，并想要把它们变成通用函数来实现。
+
+### `newdon`函数
+科学计算库SciPy中提供了和我们实现的`find_zero`很类似的函数，它被定义为：
+
+```python
+scipy.optimize.newton(
+    func, x0, fprime=None, args=(), tol=1.48e-08, maxiter=50, fprime2=None
+)
+```
+
+你可以这样调用它：
+
+```python
+from scipy.optimize import newton
+root = newton(f,1.0,fprime=df)
+```
+
+为了提升兼容性，这个函数如果不传入导数，会自动退化为割线法，这对一些导数难求的函数近似很有效。
+
 
 ## 函数是一等公民
 
